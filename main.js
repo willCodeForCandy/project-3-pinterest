@@ -12,8 +12,15 @@ const body = document.querySelector('body');
 body.append(header('/assets/logo-50.png', 'Rockterest', links));
 body.append(mainGallery);
 searchBar();
+//todo: BORRAR ESTA LINEA CUANDO EL PROYECTO ESTE COMPLETO
 populateGallery(mainGallery, galleryImages);
 
-// fetch(UNSPLASH_API + 'photos/' + '?client_id=' + USER_KEY)
+// fetch(
+//   UNSPLASH_API +
+//     'photos' +
+//     `?page=${Math.floor(Math.random() * 10 + 1)}&` +
+//     'client_id=' +
+//     USER_KEY
+// )
 //   .then((res) => res.json())
-//   .then((photos) => console.log(photos));
+//   .then((photos) => populateGallery(mainGallery, photos));

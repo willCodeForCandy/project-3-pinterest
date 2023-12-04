@@ -6,7 +6,7 @@
 
 #search {
   background-color: white;
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   padding: 0 var(--spacing-md);
   flex-grow: 1;
 }

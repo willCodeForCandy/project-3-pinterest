@@ -18,6 +18,11 @@
   --spacing-md: 20px;
   --spacing-sm: 10px;
   --spacing-xs: 5px;
+
+  /* Border Radius */
+  --radius-sm: 5px;
+  --radius-md: 15px;
+  --radius-lg: 20px;
 }
 
 * {
