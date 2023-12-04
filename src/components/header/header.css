@@ -1,2 +1,21 @@
 header {
+  padding: var(--spacing-sm);
+}
+
+nav {
+  flex-grow: 1;
+}
+
+li.icon {
+  padding: var(--spacing-sm);
+  border-radius: 100%;
+  width: 45px;
+  height: 45px;
+}
+li.icon img {
+  width: 100%;
+  object-fit: contain;
+}
+li.icon:hover {
+  background-color: white;
 }

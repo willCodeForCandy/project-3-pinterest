@@ -1,34 +1,6 @@
+import { searchBar } from '../search/search';
 import './header.css';
-export const links = [
-  {
-    name: 'Home',
-    url: '#'
-  },
-  {
-    name: 'Create',
-    url: '#'
-  },
-  {
-    name: 'Search',
-    icon: 'https://img.icons8.com/plumpy/24/search--v1.png',
-    url: '#'
-  },
-  {
-    name: 'Notifications',
-    icon: 'https://img.icons8.com/plumpy/24/appointment-reminders--v1.png',
-    url: '#'
-  },
-  {
-    name: 'Messages',
-    icon: 'https://img.icons8.com/ios-filled/50/000000/speech-bubble-with-dots.png',
-    url: '#'
-  },
-  {
-    name: 'Profile',
-    icon: 'https://img.icons8.com/color/48/user-male-circle--v1.png',
-    url: '#'
-  }
-];
+
 export const header = (logoUrl, brandName, links) => {
   const header = document.createElement('header');
   header.classList.add('flex-container');
@@ -48,7 +20,7 @@ export const header = (logoUrl, brandName, links) => {
       const img = document.createElement('img');
       img.src = link.icon;
       img.alt = link.name;
-      img.className = 'icon';
+      li.className = 'icon';
       anchor.append(img);
     } else {
       anchor.textContent = link.name;

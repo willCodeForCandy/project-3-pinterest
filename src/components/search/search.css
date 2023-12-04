@@ -1,0 +1,24 @@
+#search input {
+  border: none;
+  flex-grow: 1;
+  padding: var(--spacing-sm) 0;
+}
+
+#search {
+  background-color: white;
+  border-radius: 20px;
+  padding: 0 var(--spacing-md);
+  flex-grow: 1;
+}
+
+#search img {
+  width: 20px;
+}
+
+#search input:focus {
+  outline: none;
+}
+
+#search:hover {
+  outline: 2px solid var(--primary-200);
+}
