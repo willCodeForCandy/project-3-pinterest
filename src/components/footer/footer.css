@@ -60,3 +60,12 @@ footer > ul.hidden {
     transform: scale(1);
   }
 }
+
+@media (max-width: 576px) {
+  footer {
+    bottom: var(--spacing-xl);
+  }
+  footer > ul.flex-container {
+    width: 100%;
+  }
+}
