@@ -24,6 +24,7 @@ export const header = (logoUrl, brandName, links) => {
       anchor.append(img);
     } else {
       anchor.textContent = link.name;
+      li.className = 'textMenu';
     }
     li.append(anchor);
     ul.append(li);

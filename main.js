@@ -14,13 +14,24 @@ body.append(mainGallery);
 searchBar();
 //todo: BORRAR ESTA LINEA CUANDO EL PROYECTO ESTE COMPLETO
 populateGallery(mainGallery, galleryImages);
+const searchInput = document.querySelector('input');
 
-// fetch(
-//   UNSPLASH_API +
-//     'photos' +
-//     `?page=${Math.floor(Math.random() * 10 + 1)}&` +
-//     'client_id=' +
-//     USER_KEY
-// )
-//   .then((res) => res.json())
-//   .then((photos) => populateGallery(mainGallery, photos));
+const getPics = (apiUrl, key, query) => {
+  let url = '';
+  if (query) {
+    url = `${apiUrl}search/photos?query=${query}&client_id=${key}`;
+  } else {
+    url = `${apiUrl}/photos?client_id=${key}`;
+  }
+  fetch(url)
+    .then((res) => res.json())
+    .then((photos) => {
+      populateGallery(mainGallery, photos.results);
+    });
+};
+const searchPhotos = (e) => {
+  console.log(e.target.value);
+  getPics(UNSPLASH_API, USER_KEY, e.target.value);
+};
+searchInput.addEventListener('change', searchPhotos);
+// getPics(UNSPLASH_API, USER_KEY);
