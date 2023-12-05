@@ -8,11 +8,6 @@ export const links = [
     url: '#'
   },
   {
-    name: 'Search',
-    icon: '/assets/magnifying-glass.png',
-    url: '#'
-  },
-  {
     name: 'Notifications',
     icon: '/assets/bell.png',
     url: '#'

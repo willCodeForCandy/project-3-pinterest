@@ -1,4 +1,3 @@
-import { searchBar } from '../search/search';
 import './header.css';
 
 export const header = (logoUrl, brandName, links) => {
@@ -7,6 +6,17 @@ export const header = (logoUrl, brandName, links) => {
   const logo = document.createElement('img');
   logo.src = logoUrl;
   logo.alt = `${brandName} logo`;
+
+  const searchContainer = document.createElement('div');
+  searchContainer.id = 'search';
+  const searchIcon = document.createElement('img');
+  searchIcon.src = '/assets/magnifying-glass.png';
+  searchIcon.alt = 'Search';
+  const input = document.createElement('input');
+  input.placeholder = 'Search';
+  searchContainer.classList.add('flex-container');
+  searchContainer.append(searchIcon);
+  searchContainer.append(input);
   const nav = document.createElement('nav');
   const ul = document.createElement('ul');
   ul.classList.add('flex-container');
@@ -32,6 +42,7 @@ export const header = (logoUrl, brandName, links) => {
 
   nav.append(ul);
   header.append(logo);
+  header.append(searchContainer);
   header.append(nav);
   return header;
 };

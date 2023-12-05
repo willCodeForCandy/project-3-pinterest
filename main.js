@@ -1,7 +1,8 @@
+import { footer } from './src/components/footer/footer';
 import { populateGallery } from './src/components/gallery/gallery';
 import { header } from './src/components/header/header';
-import { searchBar } from './src/components/search/search';
 import { galleryImages } from './src/data/mockGallery';
+
 import { links } from './src/data/navLinks';
 import './style.css';
 
@@ -11,9 +12,7 @@ const mainGallery = document.createElement('main');
 const body = document.querySelector('body');
 body.append(header('/assets/logo-50.png', 'Rockterest', links));
 body.append(mainGallery);
-searchBar();
-//todo: BORRAR ESTA LINEA CUANDO EL PROYECTO ESTE COMPLETO
-populateGallery(mainGallery, galleryImages);
+body.append(footer());
 const searchInput = document.querySelector('input');
 
 const getPics = (apiUrl, key, query) => {
@@ -21,17 +20,24 @@ const getPics = (apiUrl, key, query) => {
   if (query) {
     url = `${apiUrl}search/photos?query=${query}&client_id=${key}`;
   } else {
-    url = `${apiUrl}/photos?client_id=${key}`;
+    url = `${apiUrl}search/photos?query=puppy&client_id=${key}`;
   }
   fetch(url)
-    .then((res) => res.json())
+    .then((res) => {
+      // console.log(res);
+      return res.json();
+    })
     .then((photos) => {
-      populateGallery(mainGallery, photos.results);
+      // console.log(photos);
+      return populateGallery(mainGallery, photos.results);
+    })
+    .catch((err) => {
+      console.log(err);
     });
 };
 const searchPhotos = (e) => {
-  console.log(e.target.value);
   getPics(UNSPLASH_API, USER_KEY, e.target.value);
 };
 searchInput.addEventListener('change', searchPhotos);
-// getPics(UNSPLASH_API, USER_KEY);
+getPics(UNSPLASH_API, USER_KEY);
+// getPics(UNSPLASH_API, USER_KEY, galleryImages);
