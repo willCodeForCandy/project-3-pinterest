@@ -9,6 +9,7 @@ const UNSPLASH_API = 'https://api.unsplash.com/';
 const USER_KEY = 'ozAt0h0qcEqfiT1ieUs-gkTP-RUQjIwvvO9aaqhabug';
 const mainGallery = document.createElement('main');
 const body = document.querySelector('body');
+const noImagesMessage = document.createElement('h2');
 body.append(header('/assets/logo-50.png', 'Rockterest', links));
 body.append(mainGallery);
 body.append(footer());
@@ -22,7 +23,6 @@ const firstLoad = () => {
 };
 
 const searchPics = (apiUrl, key, query) => {
-  let url = '';
   if (query) {
     fetch(`${apiUrl}search/photos?query=${query}&client_id=${key}`)
       .then((res) => {
@@ -31,15 +31,16 @@ const searchPics = (apiUrl, key, query) => {
       })
       .then((bodyRes) => {
         console.log(bodyRes);
-        const noImagesMessage = document.createElement('h2');
+
         if (bodyRes.total === 0) {
           noImagesMessage.innerHTML =
             'No se encontraron imágenes que coincidan con tu búsqueda ⛈️ <br> Pero puedes mirar estos perritos para sentirte mejor:';
           body.insertBefore(noImagesMessage, mainGallery);
+          mainGallery.innerHTML = '';
           populateGallery(mainGallery, puppies);
         } else {
           console.log(noImagesMessage);
-          noImagesMessage.innerHTML = '';
+          noImagesMessage.remove();
           return populateGallery(mainGallery, bodyRes.results);
         }
       })
