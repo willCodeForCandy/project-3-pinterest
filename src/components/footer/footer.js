@@ -42,6 +42,8 @@ export const footer = () => {
   signature.textContent = 'Created by ';
   const a = document.createElement('a');
   a.href = 'https://github.com/willCodeForCandy';
+  a.rel = 'noopener';
+  a.target = '_blank';
   a.textContent = '@Viru';
   signature.append(a);
   div.append(ul, document.createElement('hr'), signature);
