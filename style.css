@@ -52,3 +52,8 @@ a {
   flex-wrap: wrap;
   gap: var(--spacing-md);
 }
+
+body h2 {
+  text-align: center;
+  padding: var(--spacing-lg);
+}

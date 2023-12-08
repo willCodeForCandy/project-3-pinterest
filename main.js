@@ -1,9 +1,8 @@
 import { footer } from './src/components/footer/footer';
 import { populateGallery } from './src/components/gallery/gallery';
 import { header } from './src/components/header/header';
-import { galleryImages } from './src/data/mockGallery';
-
 import { links } from './src/data/navLinks';
+import { puppies } from './src/data/puppies';
 import './style.css';
 
 const UNSPLASH_API = 'https://api.unsplash.com/';
@@ -14,30 +13,47 @@ body.append(header('/assets/logo-50.png', 'Rockterest', links));
 body.append(mainGallery);
 body.append(footer());
 const searchInput = document.querySelector('input');
-
-const getPics = (apiUrl, key, query) => {
-  let url = '';
-  if (query) {
-    url = `${apiUrl}search/photos?query=${query}&client_id=${key}`;
-  } else {
-    url = `${apiUrl}search/photos?query=puppy&client_id=${key}`;
-  }
-  fetch(url)
+const firstLoad = () => {
+  fetch(UNSPLASH_API + 'photos?per_page=20&client_id=' + USER_KEY)
     .then((res) => {
-      // console.log(res);
       return res.json();
     })
-    .then((photos) => {
-      // console.log(photos);
-      return populateGallery(mainGallery, photos.results);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    .then((res) => populateGallery(mainGallery, res));
 };
-const searchPhotos = (e) => {
-  getPics(UNSPLASH_API, USER_KEY, e.target.value);
+
+const searchPics = (apiUrl, key, query) => {
+  let url = '';
+  if (query) {
+    fetch(`${apiUrl}search/photos?query=${query}&client_id=${key}`)
+      .then((res) => {
+        console.log(res);
+        return res.json();
+      })
+      .then((bodyRes) => {
+        console.log(bodyRes);
+        const noImagesMessage = document.createElement('h2');
+        if (bodyRes.total === 0) {
+          noImagesMessage.innerHTML =
+            'No se encontraron imágenes que coincidan con tu búsqueda ⛈️ <br> Pero puedes mirar estos perritos para sentirte mejor:';
+          body.insertBefore(noImagesMessage, mainGallery);
+          populateGallery(mainGallery, puppies);
+        } else {
+          console.log(noImagesMessage);
+          noImagesMessage.innerHTML = '';
+          return populateGallery(mainGallery, bodyRes.results);
+        }
+      })
+      .catch((err) => {
+        const errorMessage = document.createElement('h2');
+        errorMessage.textContent = '¡Ay! ¡Ahí hay un error!' + err;
+        mainGallery.prepend(errorMessage);
+      });
+  }
 };
-searchInput.addEventListener('change', searchPhotos);
-getPics(UNSPLASH_API, USER_KEY);
+
+searchInput.addEventListener('change', (e) =>
+  searchPics(UNSPLASH_API, USER_KEY, e.target.value)
+);
+
+firstLoad(UNSPLASH_API, USER_KEY);
 // getPics(UNSPLASH_API, USER_KEY, galleryImages);
