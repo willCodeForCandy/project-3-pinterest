@@ -25,8 +25,10 @@ export const footer = () => {
   const footerIcon = document.createElement('img');
   footerIcon.src = '/assets/question-sign.png';
   footerToggle.append(footerIcon);
+  const div = document.createElement('div');
+  div.classList.add('flex-container', 'footer', 'hidden');
   const ul = document.createElement('ul');
-  ul.classList.add('flex-container', 'footer', 'hidden');
+  ul.classList.add('flex-container');
   for (const item of footerLinks) {
     const li = document.createElement('li');
     const a = document.createElement('a');
@@ -36,7 +38,14 @@ export const footer = () => {
     li.append(a);
     ul.append(li);
   }
-  footer.append(footerToggle, ul);
+  const signature = document.createElement('p');
+  signature.textContent = 'Created by ';
+  const a = document.createElement('a');
+  a.href = 'https://github.com/willCodeForCandy';
+  a.textContent = '@Viru';
+  signature.append(a);
+  div.append(ul, document.createElement('hr'), signature);
+  footer.append(footerToggle, div);
   footerToggle.addEventListener('click', toggleFooter);
   return footer;
 };

@@ -7,7 +7,7 @@ footer {
   align-items: flex-end;
   gap: var(--spacing-sm);
 }
-footer > div {
+footer > div:first-child {
   font-size: x-large;
   font-weight: 800;
   background-color: var(--bg-00);
@@ -28,24 +28,36 @@ footer > div > img {
 .animate {
   animation: clicky 0.2s;
 }
-footer > ul.flex-container {
+footer > div.flex-container {
   width: 400px;
   background-color: var(--bg-00);
   padding: var(--spacing-md);
   border-radius: var(--radius-md);
   gap: var(--spacing-md);
+  flex-direction: column;
+}
+
+footer ul.flex-container {
   justify-content: flex-start;
 }
-footer > ul > li > a {
+footer ul > li > a {
   font-size: 13px;
   font-weight: 700;
   color: var(--primary-200);
 }
+hr {
+  width: 100%;
+}
 
+footer p {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-200);
+}
 footer a:hover {
   text-decoration: underline;
 }
-footer > ul.hidden {
+footer > div.hidden {
   display: none;
 }
 

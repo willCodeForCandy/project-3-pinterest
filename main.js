@@ -31,7 +31,6 @@ const searchPics = (apiUrl, key, query) => {
       })
       .then((bodyRes) => {
         console.log(bodyRes);
-
         if (bodyRes.total === 0) {
           noImagesMessage.innerHTML =
             'No se encontraron imágenes que coincidan con tu búsqueda ⛈️ <br> Pero puedes mirar estos perritos para sentirte mejor:';
